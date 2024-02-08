@@ -1,3 +1,4 @@
+import json
 from time import sleep
 from random import random
 
@@ -31,14 +32,14 @@ html = """
             ws.onmessage = function(event) {
                 var messages = document.getElementById('messages')
                 var message = document.createElement('li')
-                var content = document.createTextNode(event.data)
+                var content = document.createTextNode(JSON.parse(event.data).msg)
                 message.appendChild(content)
                 messages.appendChild(message)
             };
             function sendMessage(event) {
                 console.log(event)
                 var input = document.getElementById("messageText")
-                ws.send(input.value)
+                ws.send({msg: input.value})
                 input.value = ''
                 event.preventDefault()
             }
@@ -82,15 +83,15 @@ async def get():
 async def websocket_endpoint(websocket: WebSocket, client_id: int):
     await manager.connect(websocket)
     try:
-        for i in range(200):
+        for i in range(20):
             words = lorem.get_word(10)
             sleep(0.2 + 0.2*random())
             # data = await websocket.receive_text()
-            await manager.send_personal_message(words, websocket)
+            await manager.send_personal_message(json.dumps({"msg": words}), websocket)
             # await manager.broadcast(f"Client #{client_id} says: {data}")
         else:
-            await manager.send_personal_message('EOC', websocket)
-            manager.disconnect(websocket)
-    except WebSocketDisconnect:
+            raise WebSocketDisconnect(reason='EOC')
+    except WebSocketDisconnect as exc:
+        await manager.send_personal_message(json.dumps({"msg": exc.reason}), websocket)
         manager.disconnect(websocket)
         # await manager.broadcast(f"Client #{client_id} left the chat")
