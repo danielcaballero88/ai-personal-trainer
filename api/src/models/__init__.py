@@ -1,1 +1,1 @@
-from .models import UserInput
+from .models import UserInputFields, UserInput

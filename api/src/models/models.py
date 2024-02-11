@@ -69,10 +69,23 @@ class Equipment(str, Enum):
     NONE = "None (bodyweight exercises only)"
 
 
+class UserInputFields(str, Enum):
+    WEIGHT = "weight"
+    HEIGHT = "height"
+    FITNESS_GOAL = "fitness_goal"
+    DAYS_PER_WEEK = "days_per_week"
+    HEALTH_CONCERNS = "health_concerns"
+    EXPERIENCE_LEVEL = "experience_level"
+    CARDIO_COMFORT = "cardio_comfort"
+    WORKOUT_LOCATION = "workout_location"
+    EQUIPMENT = "equipment"
+    FLEXIBILITY_LEVEL = "flexibility_level"
+
+
 class UserInput(BaseModel):
     weight: Weight
     height: Height
-    fintess_goal: FitnessGoal
+    fitness_goal: FitnessGoal
     days_per_week: int
     health_concerns: list[HealthConcerns]
     experience_level: ExperienceLevel
