@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python: Current File as Module",
+      "type": "debugpy",
+      "request": "launch",
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "module": "${command:extension.commandvariable.file.relativeDirDots}.${fileBasenameNoExtension}",
+    }
+  ]
+}

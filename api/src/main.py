@@ -1,7 +1,7 @@
 """Main api module."""
 from fastapi import FastAPI
 
-from models import UserInput
+from src.models import UserInput
 
 app = FastAPI()
 
