@@ -1,16 +1,16 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing'
 
-import { TrainerService } from './trainer.service';
+import { TrainerService } from './trainer.service'
 
 describe('TrainerService', () => {
-  let service: TrainerService;
+  let service: TrainerService
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(TrainerService);
-  });
+    TestBed.configureTestingModule({})
+    service = TestBed.inject(TrainerService)
+  })
 
   it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
-});
+    expect(service).toBeTruthy()
+  })
+})
